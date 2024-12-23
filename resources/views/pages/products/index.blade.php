@@ -33,13 +33,13 @@
                     <tbody>
                        @foreach ($products as $product)
                        <tr>
-                        <td>1</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{$product->name }}</td>
                         <td>{{$product->description }}</td>
                         <td>{{$product->sku }}</td>
                         <td>{{$product->price }}</td>
                         <td>{{$product->stock }}</td>
-                        <td>{{$product->category_id }}</td>
+                        <td>{{$product->category->name}}</td>
                     </tr>
                        @endforeach
                     </tbody>
