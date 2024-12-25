@@ -14,3 +14,4 @@ use App\Http\Controllers\Admin\ProductsController;
 */
 
 Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/products/create', [ProductsController::class, 'create']);
