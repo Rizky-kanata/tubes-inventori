@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-end">
                 <a href="/products/create" class="btn btn-sm btn-primary">
-                    Tambah Barang
+                    Tambah Produk
                 </a>
             </div>
             <div class="card-body">
@@ -28,11 +28,12 @@
                         <tr>
                             <th>No</th>
                             <th>Produk</th>
-                            <th>Description</th>
+                            <th>Deskripsi</th>
                             <th>Kode</th>
                             <th>Harga</th>
                             <th>Stok</th>
                             <th>Kategori</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,11 +41,23 @@
                        <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{$product->name }}</td>
-                        <td>{{$product->description }}</td>
+                        <td>{{$product->description ?? '-'}}</td>
                         <td>{{$product->sku }}</td>
                         <td>{{$product->price }}</td>
                         <td>{{$product->stock }}</td>
                         <td>{{$product->category->name}}</td>
+                        <td>
+                           <div class="d-flex">
+                            <a href="/products/edit/{{$product->id}}" class="btn btn-sm btn-warning mr-2">
+                                Ubah
+                                </a>
+                                <form action="/products/{{$product->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger"> Hapus </button>
+                                </form>
+                           </div>
+                        </td>
                     </tr>
                        @endforeach
                     </tbody>

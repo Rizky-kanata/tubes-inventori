@@ -15,3 +15,8 @@ use App\Http\Controllers\Admin\ProductsController;
 
 Route::get('/products', [ProductsController::class, 'index']);
 Route::get('/products/create', [ProductsController::class, 'create']);
+Route::get('/products/edit/{id}', [ProductsController::class, 'edit']);
+Route::post('/products/store', [ProductsController::class, 'store']);
+Route::put('/products/{id}', [ProductsController::class, 'update']);
+Route::delete('/products/{id}', [ProductsController::class, 'delete']);
+
