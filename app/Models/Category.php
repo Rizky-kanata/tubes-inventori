@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillabel = [
-        "name"
+        "name", "slug",
     ];
 
     public function products(){
