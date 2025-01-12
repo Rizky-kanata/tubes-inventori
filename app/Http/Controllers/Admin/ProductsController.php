@@ -10,25 +10,28 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-        $products = Product::with('category')->paginate(10);
+        $products = Product::with('category')->latest()->paginate(10);
 
 
-        return view ('pages.products.index' , [
+        return view('pages.products.index', [
             "products" => $products,
         ]);
     }
-    public function create(){
+    public function create()
+    {
 
-        $categories = Category ::all();
+        $categories = Category::all();
 
-        return view ('pages.products.create' , [
+        return view('pages.products.create', [
             "categories" => $categories,
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $validated = $request->validate([
             "name" => "required|min:3",
@@ -37,45 +40,65 @@ class ProductsController extends Controller
             "stock" => "required",
             "sku" => "required",
             "category_id" => "required",
+        ], [
+            "name.required" => "Nama produk harus diisi!",
+            "name.min" => "Minimal 3 Karakter!",
+            "price.required" => "Harga harus diisi!",
+            "stock.required" => "Stok harus diisi!",
+            "sku.required" => "Kode produk harus diisi!",
+            "category_id.required" => "Kategori harus diisi!"
         ]);
 
         Product::create($validated);
 
-        return redirect('/products');
+        return redirect('/products')->with('success', 'Berhasil menambahkan produk');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
-        $categories = Category ::all();
+        $categories = Category::all();
         $product = Product::findOrFail($id);
 
-        return view ('pages.products.edit' , [
+        return view('pages.products.edit', [
             "categories" => $categories,
             "product" => $product,
         ]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
-        $validated = $request->validate([
-            "name" => "required|min:3",
-            "description" => "nullable",
-            "price" => "required",
-            "stock" => "required",
-            "sku" => "required",
-            "category_id" => "required",
-        ]);
+        $validated = $request->validate(
+            [
+                "name" => "required|min:3",
+                "description" => "nullable",
+                "price" => "required",
+                "stock" => "required",
+                "sku" => "required",
+                "category_id" => "required",
+            ],
+            [
+                "name.required" => "Nama produk harus diisi!",
+                "name.min" => "Minimal 3 Karakter!",
+                "price.required" => "Harga harus diisi!",
+                "stock.required" => "Stok harus diisi!",
+                "sku.required" => "Kode produk harus diisi!",
+                "category_id.required" => "Kategori harus diisi!"
+            ]
+        );
 
         Product::where('id', $id)->update($validated);
 
-        return redirect('/products');
+        return redirect('/products')->with('success', 'Berhasil mengubah produk');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $product = Product::where('id', $id);
         $product->delete();
 
-        return redirect('/products');
+        return redirect('/products')->with('success', 'Berhasil menghapus produk');
     }
 }

@@ -10,11 +10,12 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('templates/plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('templates/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{asset('templates/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('templates/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('templates/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('templates/dist/css/adminlte.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="hold-transition login-page">
@@ -28,9 +29,27 @@
                 <p class="login-box-msg">Silahkan masuk</p>
                 <form>
                     <div class="mb-3 col-12">
-                        <a class="btn btn-primary btn-block" href="/dashboard">Login</a>
+                        <a id="btnLogin" class="btn btn-primary btn-block">Login</a>
                     </div>
                 </form>
+                <script>
+                    document.getElementById('btnLogin').addEventListener('click', function (event) {
+                        event.preventDefault(); // Mencegah halaman berubah
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'Anda berhasil login!',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Redirect ke halaman dashboard
+                                window.location.href = '/dashboard';
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
 </body>
 
 </html>
