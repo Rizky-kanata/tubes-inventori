@@ -17,13 +17,13 @@ use App\Http\Controllers\AuthController;
 */
 
 //Login
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
 
 //Dashboard
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 //Products
 Route::get('/products', [ProductsController::class, 'index']);

@@ -28,7 +28,7 @@
                 <p class="login-box-msg">Silahkan masuk</p>
                 <form>
                     <div class="mb-3 col-12">
-                        <a class="btn btn-primary btn-block" href="/">Login</a>
+                        <a class="btn btn-primary btn-block" href="/dashboard">Login</a>
                     </div>
                 </form>
 </body>
