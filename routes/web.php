@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,15 @@ use App\Http\Controllers\Admin\CategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Login
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+//Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 //Products
 Route::get('/products', [ProductsController::class, 'index']);
