@@ -38,7 +38,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Slug</th>
-                                <th>#</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

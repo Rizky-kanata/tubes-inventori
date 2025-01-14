@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
@@ -100,5 +101,12 @@ class ProductsController extends Controller
         $product->delete();
 
         return redirect('/products')->with('success', 'Berhasil menghapus produk');
+    }
+
+    public function exportPdf()
+    {
+        $products = Product::all();
+        $pdf = Pdf::loadView('pages.products.export_pdf', compact('products'));
+        return $pdf->download('products.pdf');
     }
 }

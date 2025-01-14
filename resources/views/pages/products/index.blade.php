@@ -27,11 +27,14 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header d-flex justify-content-end">
-                    <a href="/products/create" class="btn btn-sm btn-primary">
-                        Tambah Produk
-                    </a>
-                </div>
+                    <div class="card-header d-flex justify-content-between">
+                        <a href="{{route('products.exportPdf')}}" class="btn btn-sm btn-outline-danger">
+                            <i class="bi-download"></i> Download PDF
+                        </a>
+                        <a href="/products/create" class="btn btn-sm btn-primary ml-auto">
+                            Tambah Produk
+                        </a>
+                    </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
@@ -43,7 +46,7 @@
                                 <th>Harga</th>
                                 <th>Stok</th>
                                 <th>Kategori</th>
-                                <th>#</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
