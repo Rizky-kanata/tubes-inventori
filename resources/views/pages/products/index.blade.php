@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('#productTable').DataTable();
+        });
+    </script>
+@endpush
+
 @section('header')
     <div class="row mb-2">
         <div class="col-sm-6">
@@ -13,6 +21,7 @@
         </div>
     </div>
 @endsection
+
 
 @section('content')
     @if (session('success'))
@@ -36,7 +45,7 @@
                         </a>
                     </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-hover table-striped mb-0 bg-white" id="productTable">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -52,7 +61,7 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->index + 1 }}</td>
+                                    <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->description ?? '-' }}</td>
                                     <td>{{ $product->sku }}</td>
@@ -76,9 +85,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer">
-                    {{ $products->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

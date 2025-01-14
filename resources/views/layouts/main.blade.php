@@ -40,6 +40,8 @@
             <section class="content">
                 <div class="container-fluid">
                     @yield('content')
+                    @vite('resources/js/app.js')
+                    @stack('scripts')
                 </div>
             </section>
             <!-- /.content -->

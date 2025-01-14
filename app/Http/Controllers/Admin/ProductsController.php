@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -14,7 +15,7 @@ class ProductsController extends Controller
     public function index()
     {
 
-        $products = Product::with('category')->latest()->paginate(10);
+        $products = Product::all();
 
 
         return view('pages.products.index', [
